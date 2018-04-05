@@ -1,0 +1,27 @@
+{
+  "name": "react-filemanager-icons-plugin",
+  "version": "1.0.0",
+  "description": "Icons plugin for React File Manager",
+  "main": "./src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/themexpert/react-filemanager-icons-plugin.git"
+  },
+  "keywords": [
+    "react",
+    "filemanager",
+    "icons"
+  ],
+  "author": "Rocky",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/themexpert/react-filemanager-icons-plugin/issues"
+  },
+  "homepage": "https://github.com/themexpert/react-filemanager-icons-plugin#readme",
+  "dependencies": {
+    "antd": "^3.4.0",
+    "debounce": "^1.1.0",
+    "react": "^16.3.1"
+  },
+  "devDependencies": {}
+}
