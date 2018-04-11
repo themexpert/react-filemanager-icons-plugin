@@ -1,7 +1,7 @@
 {
-  "name": "react-filemanager-icons-plugin",
+  "name": "@themexpert/rfm-plugin-quix-icons",
   "version": "1.0.0",
-  "description": "Icons plugin for React File Manager",
+  "description": "Icons plugin for React File Manager for Quix",
   "main": "./src/index.js",
   "repository": {
     "type": "git",
