@@ -36,7 +36,7 @@ export default class TxIcons extends Component {
 
   loadFromServer = () => {
     const cached = window.localStorage.getItem('icon-hash');
-    fetch(`/index.php?option=com_quix&task=api.getIcons&${document.getElementById('jform_token').name}=1`, {credentials: 'same-origin'})
+    fetch(`${quix.url}/index.php?option=com_quix&task=api.getIcons&${document.getElementById('jform_token').name}=1`, {credentials: 'same-origin'})
       .then(data => data.json())
       .then(data => {
         this.setState({loading: false});
