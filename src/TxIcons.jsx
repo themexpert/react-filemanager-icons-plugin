@@ -35,26 +35,13 @@ export default class TxIcons extends Component {
   };
 
   loadFromServer = () => {
-    const cached = window.localStorage.getItem('icon-hash');
     fetch(`/index.php?option=com_quix&task=api.getIcons&${document.getElementById('jform_token').name}=1`, {credentials: 'same-origin'})
       .then(data => data.json())
-      .then(data => {
+      .then(icons => {
         this.setState({loading: false});
-        const icons = data.map(icon=>{
-          const parts = icon.svg.match(/"(.*?)"/g);
-          icon['viewBox'] = parts[1].replace(/"/g, '');
-          icon['path'] = parts[2].replace(/"/g, '');
-          return icon;
-        });
         const jsonStr = JSON.stringify(icons);
 
-        const hash = this.hashCode(jsonStr);
-        if (cached && cached === hash) {
-          return;
-        }
-
         this.setState({icons});
-        window.localStorage.setItem('icon-hash', hash);
         window.localStorage.setItem('icons', jsonStr);
       })
       .catch(err => {
@@ -66,7 +53,7 @@ export default class TxIcons extends Component {
 
   hashCode = string => {
     let hash = 0;
-    if (string.length == 0) {
+    if (string.length === 0) {
       return hash;
     }
     for (let i = 0; i < string.length; i++) {
@@ -127,9 +114,7 @@ export default class TxIcons extends Component {
               {icons.map((icon, i) => {
                 return (<div key={`icon-${i}`} className="fm-grid-sm" onDoubleClick={() => this.selectSVG(icon.svg)}>
                   <div className="fm-media">
-                    <div className="fm-media__thumb">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox={icon.viewBox}><path d={icon.path}/></svg>
-                    </div>
+                    <div className="fm-media__thumb" dangerouslySetInnerHTML={{ __html: icon.svg }}/>
                     <div className="fm-media__caption"><span>{icon.label}</span></div>
                   </div>
                 </div>)
