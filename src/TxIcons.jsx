@@ -18,7 +18,8 @@ export default class TxIcons extends Component {
     this.state = {
       icons: [],
       query: '',
-      loading: false
+      loading: false,
+      error: false
     };
   }
 
@@ -38,7 +39,10 @@ export default class TxIcons extends Component {
     fetch(`${quix.url}/index.php?option=com_quix&task=api.getIcons&${document.getElementById('jform_token').name}=1`, {credentials: 'same-origin'})
       .then(data => data.json())
       .then(icons => {
-        if(icons.success == false) icons = [];
+        if(icons.success == false) {
+          icons = [];
+          this.setState({ error: true })
+        }
       
         this.setState({loading: false});
         const jsonStr = JSON.stringify(icons);
@@ -104,6 +108,9 @@ export default class TxIcons extends Component {
     const icons = this.state.icons.filter(icon => {
       return this.fuzzySearch(this.state.query, icon.name);
     });
+
+    if(this.state.error) return <h2 className="text-center"> Something Wrong. Please talk with QUIX developer </h2>
+    
     return (
       <Spin spinning={this.state.loading}>
         <div className="fm-toolbar">
