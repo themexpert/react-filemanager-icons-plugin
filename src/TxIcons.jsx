@@ -38,6 +38,8 @@ export default class TxIcons extends Component {
     fetch(`${quix.url}/index.php?option=com_quix&task=api.getIcons&${document.getElementById('jform_token').name}=1`, {credentials: 'same-origin'})
       .then(data => data.json())
       .then(icons => {
+        if(icons.success == false) icons = [];
+      
         this.setState({loading: false});
         const jsonStr = JSON.stringify(icons);
 
