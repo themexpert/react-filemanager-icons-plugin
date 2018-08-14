@@ -112,7 +112,7 @@ export default class TxIcons extends Component {
     if(this.state.error) return <h2 className="text-center"> Something Wrong. Please talk with QUIX developer </h2>
     
     return (
-      <Spin prefixCls="qxui" spinning={this.state.loading}>
+      <Spin prefixCls="qxui-spin" spinning={this.state.loading}>
         <div className="fm-toolbar">
           <Input defaultValue={this.state.query} onChange={this.handleQuery} placeholder="Search icons for..."/>
         </div>
