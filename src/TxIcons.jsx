@@ -121,7 +121,7 @@ export default class TxIcons extends Component {
           <div id="fm-content">
             <div className="qx-row">
               {icons.map((icon, i) => {
-                return (<div key={`icon-${i}`} className="fm-grid-sm" onDoubleClick={() => this.selectSVG(icon.className)}>
+                return (<div key={`icon-${i}`} className="fm-grid-m" onDoubleClick={() => this.selectSVG(icon.className)}>
                   <div className="fm-media">
                       <div className="fm-media__thumb">
                         <i className={icon.className}/>
