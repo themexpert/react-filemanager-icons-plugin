@@ -18,6 +18,7 @@ export default class TxIcons extends Component {
     this.state = {
       icons: [],
       query: '',
+      loadAll: false,
       loading: false,
       error: false
     };
@@ -98,6 +99,21 @@ export default class TxIcons extends Component {
     return true;
   };
 
+  get icons () {
+    const icons = this.state.icons.filter(icon => {
+      return this.fuzzySearch(this.state.query, icon.name);
+    });
+
+    if (this.state.loadAll) {
+      return icons;
+    }
+    return icons.slice(0, 35);
+  }
+
+  loadAll = e => {
+    this.setState({loadAll: true});
+  };
+
   selectSVG = svg => {
     if(this.props.store.callback.call(this, {type: 'svg', svg})) {
       this.props.store.closeFileManager();
@@ -105,9 +121,7 @@ export default class TxIcons extends Component {
   };
 
   render = () => {
-    const icons = this.state.icons.filter(icon => {
-      return this.fuzzySearch(this.state.query, icon.name);
-    });
+    const icons = this.icons;
 
     if(this.state.error) return <h2 className="text-center"> Something Wrong. Please talk with QUIX developer </h2>
     
@@ -130,6 +144,7 @@ export default class TxIcons extends Component {
                   </div>
                 </div>)
               })}
+              <button onClick={this.loadAll}>Load All</button>
             </div>
           </div>
         </div>
