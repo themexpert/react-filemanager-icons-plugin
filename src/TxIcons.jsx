@@ -143,9 +143,11 @@ export default class TxIcons extends Component {
                     <div className="fm-media__caption"><span>{icon.label}</span></div>
                   </div>
                 </div>)
-              })}
-              <button onClick={this.loadAll}>Load All</button>
+              })}              
             </div>
+            {this.state.loadAll ? null : <div className="qx-text-center qx-d-block">
+              <button className="qxui-btn qxui-btn-primary" onClick={this.loadAll}>Load All</button>
+            </div>}
           </div>
         </div>
       </Spin>
