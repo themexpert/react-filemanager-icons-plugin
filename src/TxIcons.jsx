@@ -145,7 +145,7 @@ export default class TxIcons extends Component {
                 </div>)
               })}              
             </div>
-            {this.state.loadAll ? null : <div className="qx-text-center qx-d-block">
+            {this.state.loadAll ? null : <div className="qx-text-center qx-d-block qx-m-2">
               <button className="qxui-btn qxui-btn-primary" onClick={this.loadAll}>Load All</button>
             </div>}
           </div>
